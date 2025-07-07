@@ -3,48 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>m0usem0use site has taken a bit of a beatin'</title>
+    <title>Projects | m0usem0use</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #FFFFFF; 
-            color: #000000; 
-            font-family: 'Courier New', Courier, monospace; 
-            font-size: 28px; 
-            line-height: 1.6;
-            padding: 20px;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-            text-align: left; 
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e7eb;
+            overflow-x: hidden;
         }
-        .container {
-            max-width: 800px; 
+        /* --- CRT Scanlines Effect --- */
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(18, 18, 18, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            z-index: 9999;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
         }
-        p {
-            margin-bottom: 20px;
+        @keyframes flicker {
+            0% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.4; }
         }
-        img.placeholder {
-            display: block; 
-            margin: 30px auto; 
-            max-width: 100%; 
-            height: auto; 
-            border: 2px dashed #333333; 
-            padding: 10px; 
-            min-height: 150px; 
-            box-sizing: border-box;
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+        .card {
+            background-color: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid #374151;
+        }
+        /* --- Glitch Effect --- */
+        .glitch {
+            position: relative;
+            color: #67e8f9; /* Cyan */
+            text-shadow: 0 0 5px #67e8f9, 0 0 10px #67e8f9;
+        }
+        .glitch:before, .glitch:after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+        .glitch:before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1; /* Magenta */
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch:after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            10% { clip: rect(12px, 9999px, 60px, 0); }
+            20% { clip: rect(50px, 9999px, 102px, 0); }
+            30% { clip: rect(25px, 9999px, 56px, 0); }
+            40% { clip: rect(33px, 9999px, 73px, 0); }
+            50% { clip: rect(47px, 9999px, 78px, 0); }
+            60% { clip: rect(10px, 9999px, 105px, 0); }
+            70% { clip: rect(76px, 9999px, 118px, 0); }
+            80% { clip: rect(45px, 9999px, 47px, 0); }
+            90% { clip: rect(13px, 9999px, 86px, 0); }
+            100% { clip: rect(1px, 9999px, 95px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(2px, 9999px, 98px, 0); }
+            10% { clip: rect(95px, 9999px, 98px, 0); }
+            20% { clip: rect(35px, 9999px, 40px, 0); }
+            30% { clip: rect(20px, 9999px, 80px, 0); }
+            40% { clip: rect(85px, 9999px, 120px, 0); }
+            50% { clip: rect(45px, 9999px, 65px, 0); }
+            60% { clip: rect(10px, 9999px, 5px, 0); }
+            70% { clip: rect(60px, 9999px, 75px, 0); }
+            80% { clip: rect(30px, 9999px, 55px, 0); }
+            90% { clip: rect(80px, 9999px, 95px, 0); }
+            100% { clip: rect(50px, 9999px, 60px, 0); }
+        }
+        /* --- Typing Effect --- */
+        .typing-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: #67e8f9;
+            animation: blink 1s infinite;
+            margin-left: 4px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <p>
-            i think i was a little too lazy with my site configuration and thought it was fine hosting the html on github. some chinese gambling app was being advertised instead lol. i'm just going to move everything to my server this week instead.
-        </p>
+<body class="bg-gray-900">
 
-        <img src="mousefixed.png" alt="mouse pic">
+    <!-- Header / Hero Section -->
+    <header class="min-h-screen flex items-center justify-center text-center relative overflow-hidden">
+        <div class="z-10 p-4">
+            <!-- === YOUR IMAGE IS HERE === -->
+            <!-- Using the raw GitHub content URL to display the image -->
+            <img src="https://raw.githubusercontent.com/m0usem0use/m0usem0use.github.io/main/mousefixed.png" alt="m0usem0use logo" class="h-24 mx-auto mb-8">
+            
+            <h1 class="text-4xl md:text-6xl font-bold font-mono glitch" data-text="PROJECTS">PROJECTS</h1>
+            <p id="typing-text" class="mt-4 text-lg md:text-2xl text-gray-300 font-mono"></p>
+        </div>
+        <!-- Background Grid -->
+        <div class="absolute inset-0 z-0 opacity-20" style="background-image: linear-gradient(#1f2937 1px, transparent 1px), linear-gradient(to right, #1f2937 1px, transparent 1px); background-size: 30px 30px;"></div>
+    </header>
 
-    </div>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+
+        <!-- About Section -->
+        <section id="about" class="card">
+            <h2 class="text-3xl font-bold text-cyan-400 mb-4 border-b-2 border-cyan-400/30 pb-2">Cogito, Ergo Hack</h2>
+            <p class="text-lg text-gray-300 leading-relaxed">
+                  Working on and studying experiences and materials that provide insights and tools to fortify digital and physical infrastructure. I make things and I break things and in that process, I hope to find some answers to how things work.  I have brilliant friends and teachers that have come before me and provide an immense portfolio of ideas and guides to this wild world of security.
+            </p>
+        </section>
+
+        <!-- Video Demonstrations Section -->
+        <section id="videos" class="card">
+            <h2 class="text-3xl font-bold text-cyan-400 mb-6 border-b-2 border-cyan-400/30 pb-2">Currently Working on Creating Youtube Channel but in the Meantime, Check Out My Friends</h2>
+            <!-- Instructions for user -->
+            <div class="bg-gray-800 p-4 rounded-lg mb-8 text-sm text-gray-400">
+                <p><strong class="text-yellow-400">Some Related Picks from the Lads:</strong>  Be sure to browse their full channels</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Video 1 -->
+                <div class="bg-gray-900 p-2 rounded-lg shadow-lg">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe src="https://www.youtube.com/embed/Gl7nSpI6l3w?si=artNHWJNma7RlloH" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full rounded-md"></iframe>
+                    </div>
+                    <h3 class="font-semibold text-lg mt-4 px-2 text-white">Sapsan Cybersecurity + Military</h3>
+                    <p class="text-sm text-gray-400 mt-1 px-2 pb-2">Excellent deep dives into all things security.</p>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="bg-gray-900 p-2 rounded-lg shadow-lg">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe src="https://www.youtube.com/embed/CA3XnGyD-SQ?si=fHjHy5gdiv6h-VLW" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full rounded-md"></iframe>
+                    </div>
+                    <h3 class="font-semibold text-lg mt-4 px-2 text-white">HackedExistence Replay Attack</h3>
+                    <p class="text-sm text-gray-400 mt-1 px-2 pb-2">Some of the most clear yet advanced instructions on RF hacks from my buddies.</p>
+                </div>
+                
+                <!-- Add more video blocks here by copying the structure above -->
+            </div>
+        </section>
+
+        <!-- Text/Articles Section -->
+        <section id="articles" class="card">
+            <h2 class="text-3xl font-bold text-cyan-400 mb-6 border-b-2 border-cyan-400/30 pb-2">Hacky Write-ups</h2>
+            
+                
+
+            <div class="space-y-12">
+                <!-- Article 1 -->
+                <article>
+                    <h3 class="text-2xl font-semibold text-white mb-2">Exploring the Evil Crow RF V2 + H-RAT Firmware</h3>
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                        The H-RAT firmware transforms the Evil Crow RF v2 into a potent field tool.  The H-RAT firmware allows full access to the powerhouse that is the Evil Crow RF V2 with a gorgeous and easy-to-use web UI.  Connect to the access point provided by the native ESP-32 chip and navigate to 192.168.4.1 for a clear and clean control center.  There are TWO CC1101 subghz modules + cool and practical stubby antennas that allow FULL DUPLEX.  This means we're talking receive and transmission of signals AT THE SAME TIME.  This allows for complex research and attacks like rolljam experiments and a lot more.  There is an extensive amount of data that is pulled from receiving these signals and the H-RAT firmware parses and displays every bit in clear plaintext.  You'll find seperate sections for binary and other variations of information picked up by the subghz radios.  There is ALSO a built-in NRF module for further communication + experiments in the 2.5 ghz spectrum but primarily, I use the ECRFv2 for sub-gigahertz research.  I am working on a video that dives into a lot more of this content.  Get on over to https://sapsan-sklep.pl/ and pick up one or two for yourself.
+                    </p>
+                    <pre class="bg-gray-900 text-cyan-300 p-4 rounded-md overflow-x-auto text-sm font-mono"></pre>
+                </article>
+
+                <!-- Article 2 -->
+                <article>
+                    <h3 class="text-2xl font-semibold text-white mb-2">Building the Raspyjack Network Pentest Tool</h3>
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                           A brilliant tool found at https://github.com/7h30th3r0n3/Raspyjack for network recon and exploitation.  The github repo provides all the materials and direction you will need to put one together.  The first youtube video I put together shortly will likely be on this build.
+                    </p>
+                </article>
+                
+                 <!-- Add more articles here -->
+            </div>
+        </section>
+        
+        <!-- === NEW IMAGE SECTION === -->
+        <section id="lab-images" class="card">
+            <h2 class="text-3xl font-bold text-cyan-400 mb-6 border-b-2 border-cyan-400/30 pb-2">From the Lab</h2>
+            <!-- Instructions for user -->
+            <div class="bg-gray-800 p-4 rounded-lg mb-8 text-sm text-gray-400">
+                <p><strong class="text-yellow-400">How to add images:</strong> Replace the placeholder URLs below with links to your own images.</p>
+            </div>
+            
+            <div class="space-y-12">
+                <!-- Image 1 -->
+                <!-- Replace "#" with your desired URL for the first image -->
+                <a href="https://certifications.tcm-sec.com/?ref=m0usem0use" target="_blank" rel="noopener noreferrer" class="block transform hover:scale-105 transition-transform duration-300">
+                    <div class="bg-gray-900 p-2 rounded-lg shadow-lg">
+                        <img src="https://certifications.tcm-sec.com/wp-content/uploads/2021/09/TCM-Security-final-small-800x400.png" alt="Hardware Analysis Station" class="w-full h-auto rounded-md object-cover">
+                        <h3 class="font-semibold text-lg mt-4 px-2 text-white">TCM Security</h3>
+                        <p class="text-sm text-gray-400 mt-1 px-2 pb-2">Excellent training for all things security.</p>
+                    </div>
+                </a>
+
+                <!-- Image 2 -->
+                <!-- Replace "#" with your desired URL for the second image -->
+                <a href="https://sapsan-sklep.pl/en" target="_blank" rel="noopener noreferrer" class="block transform hover:scale-105 transition-transform duration-300">
+                    <div class="bg-gray-900 p-2 rounded-lg shadow-lg">
+                        <img src="https://yt3.googleusercontent.com/wlMx7vZ22go45z-SA_w7Q3vkkXGFDTSCjRfd34aMeCjTfqv59QAvc0m6e7sGkPE4Ad2D57zdJJ8=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" alt="SDR Workbench" class="w-full h-auto rounded-md object-cover">
+                        <h3 class="font-semibold text-lg mt-4 px-2 text-white">Sapsan Pentesting - Cybersecurity + Military</h3>
+                        <p class="text-sm text-gray-400 mt-1 px-2 pb-2">The absolute BEST selection of security tools + training.  We will be extensively working together so stay tuned!</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <!-- === END NEW IMAGE SECTION === -->
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 mt-24">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">&copy; 2025 m0usem0use. All rights reserved.</p>
+            <p class="text-xs text-gray-500 mt-2">There is always a solution.  There is always a way.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Typing Effect Script ---
+        // This listener ensures the script runs only after the full HTML document is loaded.
+        document.addEventListener('DOMContentLoaded', function() {
+            const texts = ["Cybersecurity Student.", "Maker + Breaker.", "Exploring the RF Spectrum."];
+            let count = 0;
+            let index = 0;
+            let currentText = '';
+            let letter = '';
+            // This is now guaranteed to find the element.
+            const typingElement = document.getElementById('typing-text');
+
+            function type() {
+                if (count === texts.length) {
+                    count = 0;
+                }
+                currentText = texts[count];
+                letter = currentText.slice(0, ++index);
+
+                typingElement.innerHTML = letter + '<span class="typing-cursor"></span>';
+
+                if (letter.length === currentText.length) {
+                    count++;
+                    index = 0;
+                    setTimeout(type, 3000); // Wait 3 seconds before starting next text
+                } else {
+                    setTimeout(type, 100);
+                }
+            }
+            type();
+        });
+    </script>
+
 </body>
 </html>
